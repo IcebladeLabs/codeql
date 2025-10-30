@@ -1,5 +1,8 @@
 import python
 private import LegacyPointsTo
+private import semmle.python.types.FunctionObject
+private import semmle.python.types.ClassObject
+private import semmle.python.SelfAttribute
 
 /** The metrics for a function */
 class FunctionMetrics extends Function {

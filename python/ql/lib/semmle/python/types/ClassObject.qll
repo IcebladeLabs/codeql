@@ -6,6 +6,10 @@ private import semmle.python.pointsto.PointsTo
 private import semmle.python.pointsto.MRO
 private import semmle.python.types.Builtins
 private import semmle.python.objects.ObjectInternal
+private import semmle.python.types.Object
+private import semmle.python.types.FunctionObject
+private import semmle.python.SelfAttribute
+private import semmle.python.types.ImportTime
 
 /**
  * A class whose instances represents Python classes.
