@@ -22,6 +22,10 @@ private import semmle.code.java.frameworks.google.Gson
 private import semmle.code.java.frameworks.apache.Lang
 private import semmle.code.java.Reflection
 
+import MySources
+import MySinks
+import MySummaries
+
 private class ObjectInputReadObjectMethod extends Method {
   ObjectInputReadObjectMethod() {
     this.getDeclaringType().getASourceSupertype*() instanceof TypeObjectInput and
@@ -300,15 +304,17 @@ private predicate isUnsafeDeserializationTaintStep(DataFlow::Node pred, DataFlow
 
 /** Tracks flows from remote user input to a deserialization sink. */
 private module UnsafeDeserializationConfig implements DataFlow::ConfigSig {
-  predicate isSource(DataFlow::Node source) { source instanceof ActiveThreatModelSource }
+  predicate isSource(DataFlow::Node source) { isGPTDetectedSource(source) }
 
-  predicate isSink(DataFlow::Node sink) { sink instanceof UnsafeDeserializationSink }
+  predicate isSink(DataFlow::Node sink) { isGPTDetectedSink(sink) }
 
-  predicate isAdditionalFlowStep(DataFlow::Node pred, DataFlow::Node succ) {
-    isUnsafeDeserializationTaintStep(pred, succ)
+  predicate isBarrier(DataFlow::Node sanitizer) {
+    sanitizer.getType() instanceof BoxedType or
+    sanitizer.getType() instanceof PrimitiveType or
+    sanitizer.getType() instanceof NumberType
   }
 
-  predicate isBarrier(DataFlow::Node node) { isUnsafeDeserializationSanitizer(node) }
+  predicate isAdditionalFlowStep(DataFlow::Node n1, DataFlow::Node n2) { isGPTDetectedStep(n1, n2) }
 
   predicate observeDiffInformedIncrementalMode() { any() }
 
