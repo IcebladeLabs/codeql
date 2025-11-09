@@ -2,25 +2,26 @@
  * Provides classes and predicates for finding deserialization vulnerabilities.
  */
 
-import semmle.code.java.dataflow.FlowSources
-private import semmle.code.java.dataflow.ExternalFlow
-private import semmle.code.java.dataflow.FlowSinks
-private import semmle.code.java.dispatch.VirtualDispatch
-private import semmle.code.java.frameworks.Kryo
-private import semmle.code.java.frameworks.XStream
-private import semmle.code.java.frameworks.SnakeYaml
-private import semmle.code.java.frameworks.FastJson
-private import semmle.code.java.frameworks.JsonIo
-private import semmle.code.java.frameworks.YamlBeans
-private import semmle.code.java.frameworks.HessianBurlap
-private import semmle.code.java.frameworks.Jackson
-private import semmle.code.java.frameworks.Jabsorb
-private import semmle.code.java.frameworks.Jms
-private import semmle.code.java.frameworks.JoddJson
-private import semmle.code.java.frameworks.Flexjson
-private import semmle.code.java.frameworks.google.Gson
-private import semmle.code.java.frameworks.apache.Lang
-private import semmle.code.java.Reflection
+import codeql/java/dataflow/FlowSources
+private import codeql/java/dataflow/ExternalFlow
+private import codeql/java/dataflow/FlowSinks
+private import codeql/java/dispatch/VirtualDispatch
+private import codeql/java/frameworks/Kryo
+private import codeql/java/frameworks/XStream
+private import codeql/java/frameworks/SnakeYaml
+private import codeql/java/frameworks/FastJson
+private import codeql/java/frameworks/JsonIo
+private import codeql/java/frameworks/YamlBeans
+private import codeql/java/frameworks/HessianBurlap
+private import codeql/java/frameworks/Jackson
+private import codeql/java/frameworks/Jabsorb
+private import codeql/java/frameworks/Jms
+private import codeql/java/frameworks/JoddJson
+private import codeql/java/frameworks/Flexjson
+private import codeql/java/frameworks/google/Gson
+private import codeql/java/frameworks/apache/Lang
+private import codeql/java/Reflection
+
 
 import MySources
 import MySinks
